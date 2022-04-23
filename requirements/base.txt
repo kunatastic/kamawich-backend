@@ -32,3 +32,6 @@ djangorestframework-simplejwt==5.0.0
 
 # Django Rest Auth
 django-rest-auth==0.9.5
+
+# debugger
+django-debug-toolbar==3.2.4
