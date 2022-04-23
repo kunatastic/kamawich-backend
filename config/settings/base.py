@@ -319,13 +319,13 @@ CORS_URLS_REGEX = r"^/api/.*$"
 # By Default swagger ui is available only to admin user(s). You can change permission classes to change that
 # See more configuration options at https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
 SPECTACULAR_SETTINGS = {
-    "TITLE": "course_api API",
-    "DESCRIPTION": "Documentation of API endpoints of course_api",
+    "TITLE": "kamawich API",
+    "DESCRIPTION": "Documentation of API endpoints of kamawich",
     "VERSION": "1.0.0",
     "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     "SERVERS": [
         {"url": "https://127.0.0.1:8000", "description": "Local Development server"},
-        {"url": "https://tsapi.coronasafe.xyz", "description": "Production server"},
+        {"url": "https://kamawich-api.herokuapp.com", "description": "Production server"},
     ],
 }
 # Your stuff...
