@@ -322,7 +322,7 @@ SPECTACULAR_SETTINGS = {
     "TITLE": "kamawich API",
     "DESCRIPTION": "Documentation of API endpoints of kamawich",
     "VERSION": "1.0.0",
-    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
+    # "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     "SERVERS": [
         {"url": "https://127.0.0.1:8000", "description": "Local Development server"},
         {"url": "https://kamawich-api.herokuapp.com", "description": "Production server"},
