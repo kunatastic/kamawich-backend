@@ -35,3 +35,4 @@ django-rest-auth==0.9.5
 
 # debugger
 django-debug-toolbar==3.2.4
+django_extensions==3.1.5
