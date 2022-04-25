@@ -5,6 +5,9 @@ from rest_framework.serializers import ModelSerializer, IntegerField
 from rest_framework.exceptions import ValidationError
 from course_api.tasks.models import Board, Status, Task
 from rest_framework.permissions import IsAuthenticated
+from django_filters.rest_framework import  DjangoFilterBackend, FilterSet
+
+
 
 class BoardSerializer(ModelSerializer):    
     
@@ -20,13 +23,12 @@ class StatusSerializer(ModelSerializer):
 class TaskSerializer(ModelSerializer):
     board_object = BoardSerializer(source="board", read_only=True)
     status_object = StatusSerializer(source="status" , read_only=True)
-    status = IntegerField(required=True, write_only=True)
+
     class Meta:
         model = Task
         exclude = ( "external_id","deleted")
 
     def validate(self, attrs):
-
         validated_data =  super().validate(attrs)
         user = self.context["request"].user
         status = validated_data["status"]
@@ -59,10 +61,19 @@ class StatusViewset(ModelViewSet):
     def get_queryset(self):
         return self.queryset.filter(created_by = self.request.user)
 
+
+
+class TaskFilter(FilterSet):
+    class Meta:
+        model = Task
+        fields = ['status']
+
 class TaskViewSet(ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = TaskFilter 
 
     def get_queryset(self):
         print(self.kwargs)

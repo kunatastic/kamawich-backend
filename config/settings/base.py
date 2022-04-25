@@ -82,6 +82,7 @@ THIRD_PARTY_APPS = [
     # Additional Third Party Apps
     "drf_yasg",
     "rest_auth",
+    "django_filters"
 ]
 
 LOCAL_APPS = [
