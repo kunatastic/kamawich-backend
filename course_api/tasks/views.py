@@ -23,7 +23,7 @@ class StatusSerializer(ModelSerializer):
 class TaskSerializer(ModelSerializer):
     board_object = BoardSerializer(source="board", read_only=True)
     status_object = StatusSerializer(source="status" , read_only=True)
-
+    status = IntegerField(source="status.id", required=True)
     class Meta:
         model = Task
         exclude = ( "external_id","deleted")
@@ -32,7 +32,7 @@ class TaskSerializer(ModelSerializer):
         validated_data =  super().validate(attrs)
         user = self.context["request"].user
         status = validated_data["status"]
-        status_obj =  Status.objects.filter(created_by = user , id=status).first()
+        status_obj =  Status.objects.filter(created_by = user , id=status["id"]).first()
         if not status_obj:
             raise ValidationError({"status" : "not found"})
         validated_data["status"] = status_obj
