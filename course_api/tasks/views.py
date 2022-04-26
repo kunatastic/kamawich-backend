@@ -84,3 +84,13 @@ class TaskViewSet(ModelViewSet):
     def perform_create(self, serializer):
         board = get_object_or_404(Board.objects.filter(id=self.kwargs["boards_pk"] , created_by =self.request.user))
         serializer.save(board=board)
+
+
+class ListTaskViewSet(ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    permission_classes = [IsAuthenticated]
+    
+
+    def get_queryset(self):
+        return self.queryset.filter(board__created_by = self.request.user)
